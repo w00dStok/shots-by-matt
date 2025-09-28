@@ -10,9 +10,9 @@ const config: GatsbyConfig = {
     // See all options: https://github.com/LekoArts/gatsby-themes/blob/main/themes/gatsby-theme-emilia-core/gatsby-config.mjs
     siteTitle: `Shots by Matt`,
     siteTitleAlt: `Shots by Matt`,
-    siteHeadline: `Shots By Matt - Matt Wood Photography`,
+    siteHeadline: `Shots By Matt - Matthew Wood Photography`,
     siteUrl: `https://www.shotsbymatt.com`,
-    siteDescription: `Minimalistic portfolio/photography site with masonry grid, page transitions and big images. Themeable with Theme UI. Includes Light/Dark mode.`,
+    siteDescription: `A simple minimalistic photography portfolio`,
     siteImage: `/banner.jpg`,
     siteLanguage: `en`,
     author: `Matthew Wood`,
