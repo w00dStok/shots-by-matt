@@ -141,3 +141,6 @@ vite.config.ts.timestamp-*
 .vite/
 .cache/
 public/
+.cache/
+public/
+node_modules/
