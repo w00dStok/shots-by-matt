@@ -13,7 +13,7 @@ const config: GatsbyConfig = {
     siteHeadline: `Shots By Matt - Matthew Wood Photography`,
     siteUrl: `https://www.shotsbymatt.com`,
     siteDescription: `A simple minimalistic photography portfolio`,
-    siteImage: `/banner.jpg`,
+    siteImage: `/avatar.png`,
     siteLanguage: `en`,
     author: `Matthew Wood`,
   },
