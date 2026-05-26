@@ -112,7 +112,7 @@ const Header = () => {
           <animated.div style={fadeLongProps}>
             {/* Example placeholder links */}
             <a
-              href="https://instagram.com/yourhandle"
+              href="https://instagram.com/w00dStok"
               target="_blank"
               rel="noopener noreferrer"
               sx={{
