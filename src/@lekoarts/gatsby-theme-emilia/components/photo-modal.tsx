@@ -128,35 +128,27 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ photos, selectedIndex, onClose,
           alignItems: `center`,
         }}
       >
-        <div
-          sx={{
-            bg: `white`,
-            p: [`12px`, `20px`],
-            display: `flex`,
-            alignItems: `center`,
-            justifyContent: `center`,
-          }}
-        >
-          {current.gatsbyImageData ? (
-            <GatsbyImage
-              image={current.gatsbyImageData}
-              alt={current.name}
-              style={{ maxHeight: `80vh`, maxWidth: `85vw` }}
-              imgStyle={{ objectFit: `contain` }}
-            />
-          ) : (
-            <img
-              src={current.url}
-              alt={current.name}
-              style={{
-                maxHeight: `80vh`,
-                maxWidth: `85vw`,
-                objectFit: `contain`,
-                display: `block`,
-              }}
-            />
-          )}
-        </div>
+        {current.gatsbyImageData ? (
+          <GatsbyImage
+            image={current.gatsbyImageData}
+            alt={current.name}
+            style={{ maxHeight: `82vh`, maxWidth: `88vw`, padding: `8px`, background: `white` }}
+            imgStyle={{ objectFit: `contain` }}
+          />
+        ) : (
+          <img
+            src={current.url}
+            alt={current.name}
+            style={{
+              maxHeight: `82vh`,
+              maxWidth: `88vw`,
+              objectFit: `contain`,
+              display: `block`,
+              padding: `8px`,
+              background: `white`,
+            }}
+          />
+        )}
         <div
           sx={{
             mt: 2,
