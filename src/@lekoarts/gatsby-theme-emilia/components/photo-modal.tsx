@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useEffect, useCallback } from "react"
+import React, { useEffect, useCallback, useRef } from "react"
 import { jsx } from "theme-ui"
 import { GatsbyImage } from "gatsby-plugin-image"
 import type { PhotoEntry } from "./project"
@@ -50,6 +50,8 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ photos, selectedIndex, onClose,
   const hasPrev = selectedIndex > 0
   const hasNext = selectedIndex < photos.length - 1
 
+  const touchStartX = useRef<number | null>(null)
+
   const handleKey = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === `Escape`) onClose()
@@ -59,15 +61,35 @@ const PhotoModal: React.FC<PhotoModalProps> = ({ photos, selectedIndex, onClose,
     [onClose, onNavigate, selectedIndex, hasPrev, hasNext]
   )
 
+  const handleTouchStart = useCallback((e: TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }, [])
+
+  const handleTouchEnd = useCallback(
+    (e: TouchEvent) => {
+      if (touchStartX.current === null) return
+      const delta = e.changedTouches[0].clientX - touchStartX.current
+      touchStartX.current = null
+      if (Math.abs(delta) < 50) return
+      if (delta > 0 && hasPrev) onNavigate(selectedIndex - 1)
+      if (delta < 0 && hasNext) onNavigate(selectedIndex + 1)
+    },
+    [hasPrev, hasNext, onNavigate, selectedIndex]
+  )
+
   useEffect(() => {
     document.addEventListener(`keydown`, handleKey)
+    document.addEventListener(`touchstart`, handleTouchStart)
+    document.addEventListener(`touchend`, handleTouchEnd)
     const prev = document.body.style.overflow
     document.body.style.overflow = `hidden`
     return () => {
       document.removeEventListener(`keydown`, handleKey)
+      document.removeEventListener(`touchstart`, handleTouchStart)
+      document.removeEventListener(`touchend`, handleTouchEnd)
       document.body.style.overflow = prev
     }
-  }, [handleKey])
+  }, [handleKey, handleTouchStart, handleTouchEnd])
 
   return (
     <div
